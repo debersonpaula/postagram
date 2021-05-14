@@ -4,9 +4,14 @@ import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import HeaderBar from './components/HeaderBar';
 
-const theme = createMuiTheme({});
+import Amplify from 'aws-amplify';
+import config from './aws-exports';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
-export default function App() {
+const theme = createMuiTheme({});
+Amplify.configure(config);
+
+function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -14,3 +19,5 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+export default withAuthenticator(App);
