@@ -1,6 +1,8 @@
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GetPosts from '../services/GetPosts';
 import PostCard from './PostCard';
+import PostCreate from './PostCreate';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -9,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '90vh',
   },
   postList: {
-    minWidth: 200,
+    minWidth: 300,
     '& > *': {
       marginBottom: theme.spacing(2),
     },
@@ -27,8 +29,12 @@ export default function Posts() {
         {posts.isFailed && <p>Error on Fetching Post data.</p>}
         {posts.isCompleted &&
           posts.result?.listPosts?.items?.map((post, key) => (
-            <PostCard key={key} name={post?.name} createdAt={post?.createdAt} />
+            <PostCard key={key} name={post?.name} createdAt={post?.createdAt} image={post?.image} />
           ))}
+        <br />
+        <br />
+        <br />
+        <PostCreate />
       </div>
     </div>
   );
