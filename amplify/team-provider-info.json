@@ -10,6 +10,11 @@
       "StackName": "amplify-postagramv2-dev-123430",
       "StackId": "arn:aws:cloudformation:us-west-2:824614906338:stack/amplify-postagramv2-dev-123430/e3058cb0-b4c9-11eb-97e3-0a5fe9e3122b",
       "AmplifyAppId": "d32cy21z3no29h"
+    },
+    "categories": {
+      "auth": {
+        "postagramv2e8cb21b8": {}
+      }
     }
   }
 }
