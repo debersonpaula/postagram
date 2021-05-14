@@ -1,6 +1,6 @@
 {
   "api": {
-    "postagram": {
+    "postagramv2": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -15,20 +15,6 @@
           "additionalAuthenticationProviders": []
         }
       }
-    }
-  },
-  "auth": {
-    "postagram88eedf60": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
-    }
-  },
-  "storage": {
-    "postagram1": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation"
     }
   }
 }

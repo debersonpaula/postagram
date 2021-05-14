@@ -1,5 +1,5 @@
 projects:
-  postagram:
+  postagramv2:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.ts
@@ -8,8 +8,5 @@ projects:
     extensions:
       amplify:
         codeGenTarget: typescript
-        generatedFileName: src/API.ts
+        generatedFileName: src/ApiGraphql.ts
         docsFilePath: src/graphql
-extensions:
-  amplify:
-    version: 3
