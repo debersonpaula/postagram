@@ -22,9 +22,19 @@ export default function GetPostService() {
     })
       .then((result) => {
         setState((current) => {
-          result?.listPosts?.items?.forEach((item) => {
+          const sortedPosts =
+            result?.listPosts?.items?.sort((a, b) => {
+              if (a && b) {
+                return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+              }
+              return 0;
+            }) || [];
+
+          const posts: PostData[] = [];
+
+          sortedPosts.forEach((item) => {
             if (item) {
-              current.posts.push({
+              posts.push({
                 id: item.id,
                 name: item.name,
                 location: item.location,
@@ -35,7 +45,7 @@ export default function GetPostService() {
               });
             }
           });
-          return { ...current, isLoading: false, isCompleted: true };
+          return { isLoading: false, isCompleted: true, isFailed: false, posts };
         });
       })
       .catch(() => {

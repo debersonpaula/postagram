@@ -17,8 +17,9 @@ export default function CreatePostService() {
   const insertPost = async (param: CreatePostParam) => {
     setState({ ...initialState, isSaving: true });
     try {
-      await savePost(param);
+      const post = await savePost(param);
       setState({ ...initialState, isCompleted: true });
+      return post?.createPost?.id;
     } catch (error) {
       console.error(error);
       setState({ ...initialState, isFailed: true });
@@ -39,7 +40,7 @@ async function savePost(param: CreatePostParam) {
   const hash = crypto.randomBytes(12).toString('hex');
   const imageName = hash + '-' + param.image.name;
   await Storage.put(imageName, param.image);
-  await queryGraphQL<CreatePostMutation>({
+  return await queryGraphQL<CreatePostMutation>({
     query: createPost,
     variables: { input: { ...param, image: imageName } },
   });
