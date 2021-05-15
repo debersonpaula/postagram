@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import convertDate from '../helpers/convertDate';
 import { ListPostsQuery } from '../ApiGraphql';
 import { listPosts } from '../graphql/queries';
@@ -42,10 +42,6 @@ export default function GetPostService() {
         setState((current) => ({ ...current, isLoading: false, isCompleted: true }));
       });
   };
-
-  useEffect(() => {
-    getAllPosts();
-  }, []);
 
   return { ...state, getAllPosts };
 }
