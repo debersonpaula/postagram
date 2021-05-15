@@ -15,9 +15,9 @@ const useStyles = makeStyles(
   { name: DynamicForm.name },
 );
 
-export function DynamicForm(props: IDynamicFormProps) {
+export default function DynamicForm(props: IDynamicFormProps) {
   const classes = useStyles();
-  const [data, setData] = useState({});
+  let [data, setData] = useState<Record<string, any>>({});
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -47,16 +47,20 @@ export function DynamicForm(props: IDynamicFormProps) {
       ))}
       <br />
       <Button variant="contained" onClick={() => props.onSubmit(data)}>
-        {props.labelSubmit}
+        {props.labelSubmit || 'Submit'}
+      </Button>
+      <Button variant="contained" onClick={() => props.onCancel && props.onCancel()}>
+        Cancel
       </Button>
     </form>
   );
 }
 
 interface IDynamicFormProps {
+  labelSubmit?: string;
   fields: Fields;
-  onSubmit: (data: any) => void;
-  labelSubmit: string;
+  onSubmit: (data: Record<string, any>) => void;
+  onCancel?: () => void;
 }
 
 type Fields = Array<{ name: string; label: string; type?: string; required?: boolean }>;
