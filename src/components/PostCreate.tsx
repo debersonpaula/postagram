@@ -1,8 +1,10 @@
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import React from 'react';
 import CreatePostService from '../services/CreatePostService';
 import { DynamicForm } from './DynamicForm';
+import Loader from './Loader';
 
 export default function PostCreate() {
   const postCreation = CreatePostService();
@@ -31,6 +33,7 @@ export default function PostCreate() {
           onSubmit={handleOnSubmit}
         />
       </CardContent>
+      <Loader />
     </Card>
   );
 }

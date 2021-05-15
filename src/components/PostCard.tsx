@@ -6,12 +6,15 @@ import React from 'react';
 import convertDate from '../helpers/convertDate';
 import GetImage from '../services/GetImage';
 
-const useStyles = makeStyles((theme) => ({
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-}));
+const useStyles = makeStyles(
+  (theme) => ({
+    media: {
+      height: 0,
+      paddingTop: '56.25%', // 16:9
+    },
+  }),
+  { name: PostCard.name },
+);
 
 export default function PostCard(props: Partial<PostCardProps>) {
   const classes = useStyles();

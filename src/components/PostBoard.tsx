@@ -4,21 +4,24 @@ import GetPosts from '../services/GetPosts';
 import PostCard from './PostCard';
 import PostCreate from './PostCreate';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(3),
-    display: 'flex',
-    minHeight: '90vh',
-  },
-  postList: {
-    minWidth: 300,
-    '& > *': {
-      marginBottom: theme.spacing(2),
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      padding: theme.spacing(3),
+      display: 'flex',
+      minHeight: '90vh',
     },
-  },
-}));
+    postList: {
+      minWidth: 300,
+      '& > *': {
+        marginBottom: theme.spacing(2),
+      },
+    },
+  }),
+  { name: PostBoard.name },
+);
 
-export default function Posts() {
+export default function PostBoard() {
   const classes = useStyles();
   const posts = GetPosts();
 
