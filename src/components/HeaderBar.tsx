@@ -10,21 +10,24 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AmplifySignOut } from '@aws-amplify/ui-react';
 import useGetUser from '../hooks/useGetUser';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  actionButtons: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-}));
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+    actionButtons: {
+      display: 'flex',
+      alignItems: 'center',
+    },
+  }),
+  { name: HeaderBar.name },
+);
 
 export default function HeaderBar() {
   const classes = useStyles();

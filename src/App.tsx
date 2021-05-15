@@ -7,6 +7,7 @@ import Amplify from 'aws-amplify';
 import config from './aws-exports';
 import HeaderBar from './components/HeaderBar';
 import PostBoard from './components/PostBoard';
+import ScreenWrapper from './components/ScreenWrapper';
 
 const theme = createMuiTheme({});
 Amplify.configure(config);
@@ -15,8 +16,10 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <HeaderBar />
-      <PostBoard />
+      <ScreenWrapper>
+        <HeaderBar />
+        <PostBoard />
+      </ScreenWrapper>
     </ThemeProvider>
   );
 }
