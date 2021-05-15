@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { CreatePostMutation } from '../ApiGraphql';
 import { queryGraphQL } from '../helpers/queryGraphQL';
 import { Storage } from 'aws-amplify';
@@ -9,32 +9,23 @@ const initialState = {
   isSaving: false,
   isCompleted: false,
   isFailed: false,
-  save: (param: CreatePostParam) => {
-    console.log('NOTHING');
-  },
 };
 
 export default function CreatePostService() {
   const [state, setState] = useState(initialState);
 
-  useEffect(() => {
-    setState((current) => ({
-      ...current,
-      save: (param) => {
-        setState({ ...initialState, isSaving: true });
-        savePost(param)
-          .then(() => {
-            setState({ ...initialState, isCompleted: true });
-          })
-          .catch((err) => {
-            console.error(err);
-            setState({ ...initialState, isFailed: true });
-          });
-      },
-    }));
-  }, []);
+  const insertPost = async (param: CreatePostParam) => {
+    setState({ ...initialState, isSaving: true });
+    try {
+      await savePost(param);
+      setState({ ...initialState, isCompleted: true });
+    } catch (error) {
+      console.error(error);
+      setState({ ...initialState, isFailed: true });
+    }
+  };
 
-  return state;
+  return { ...state, insertPost };
 }
 
 interface CreatePostParam {
